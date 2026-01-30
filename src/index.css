@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4F46E5;
+  --color-secondary: #ec4899;
+  
+  --animate-blob: blob 7s infinite;
+  
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+}
+
+/* Custom Utilities that mimic your previous @layer components */
+/* In v4 we can just use standard CSS with @apply or utility composition */
+
+.glass-card {
+  @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+}
+
+.glass-input {
+  @apply bg-black/20 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-white/30 focus:bg-black/40 transition-all duration-300;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-indigo-500/30;
+}
+
+/* Base styles */
+body {
+  @apply bg-slate-900 text-white min-h-screen overflow-x-hidden;
+  background: linear-gradient(to bottom right, #0f172a, #1e1b4b);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a; 
+}
+::-webkit-scrollbar-thumb {
+  background: #334155; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569; 
+}
