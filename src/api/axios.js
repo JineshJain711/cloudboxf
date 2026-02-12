@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://cloud-box-kohl.vercel.app/api/v1',
+  baseURL: 'https://cloud-box-seven.vercel.app/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
