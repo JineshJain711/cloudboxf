@@ -32,7 +32,7 @@ api.interceptors.response.use(
     // If found, just pass the error through so frontend can display toast
     if (error.response && error.response.status === 401) {
        const msg = error.response.data?.message;
-       if (msg === "User is Registerd already" || msg === "User is Registered already") {
+       if (msg === "User is Registerd already" || msg === "User is Registered already" || msg === "Invalid OTP") {
            return Promise.reject(error);
        }
 
