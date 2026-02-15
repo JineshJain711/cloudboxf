@@ -36,7 +36,7 @@ const Signup = () => {
                 className="glass-card p-8 rounded-2xl w-full max-w-md relative z-10"
             >
                 <h2 className="text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
-                    Data Join
+                    Sign Up
                 </h2>
                 <p className="text-center text-gray-400 mb-6">Create your CloudBox account</p>
 
@@ -45,7 +45,7 @@ const Signup = () => {
                         label="Full Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="John Doe"
+                        placeholder="enter your name"
                         required
                     />
                     <Input
@@ -53,7 +53,7 @@ const Signup = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="john@example.com"
+                        placeholder="xyz@example.com"
                         required
                     />
                     <Input

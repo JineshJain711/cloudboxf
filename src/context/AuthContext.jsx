@@ -13,10 +13,23 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkUser = async () => {
             const token = localStorage.getItem('token');
-            const savedUser = localStorage.getItem('user');
-
-            if (token && savedUser) {
-                setUser(JSON.parse(savedUser));
+            if (token) {
+                try {
+                    const { data } = await api.get('/auth/me'); // Verify token
+                    if (data.success) {
+                        setUser(data.user);
+                    } else {
+                        // Token invalid/expired according to backend logic (though 401 usually throws)
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('user');
+                        setUser(null);
+                    }
+                } catch (error) {
+                    console.error("Token verification failed:", error);
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    setUser(null);
+                }
             }
             setLoading(false);
         };

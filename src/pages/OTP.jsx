@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Input from '../components/Input';
+import OtpInput from '../components/OtpInput';
 import Button from '../components/Button';
 import { motion } from 'framer-motion';
 
@@ -13,12 +13,14 @@ const OTP = () => {
     const navigate = useNavigate();
 
     // If no email in state (e.g. direct access), redirect or show error.
-    // For demo, we'll let user input email if missing? No, simpler to redirect.
-    // But let's assume valid flow.
     const email = state?.email || '';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (otp.length !== 6) {
+            // Optional: show error if not complete
+            return;
+        }
         setLoading(true);
         const success = await verifyOtp(email, otp);
         setLoading(false);
@@ -43,7 +45,7 @@ const OTP = () => {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card p-8 rounded-2xl w-full max-w-sm relative z-10"
+                className="glass-card p-8 rounded-2xl w-full max-w-md relative z-10"
             >
                 <h2 className="text-2xl font-bold text-center mb-2 text-white">
                     Verify Email
@@ -53,15 +55,9 @@ const OTP = () => {
                 </p>
 
                 <form onSubmit={handleSubmit}>
-                    <Input
-                        label="OTP Code"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        placeholder="123456"
-                        required
-                        maxLength={6}
-                        className="text-center tracking-widest text-lg font-bold"
-                    />
+                    <div className="flex justify-center mb-6">
+                        <OtpInput length={6} onOtpChange={setOtp} />
+                    </div>
 
                     <div className="mt-6">
                         <Button type="submit" isLoading={loading}>

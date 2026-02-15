@@ -21,9 +21,8 @@ const Login = () => {
         if (result === true) {
             navigate('/dashboard');
         } else if (result === "NOT_VERIFIED") {
-            // Redirect to OTP page passing email
-            // Or handle verify flow
-            // The backend logic is a bit specific, usually if not verified, login fails 401
+            toast.info("Please verify your email first.");
+            navigate('/otp', { state: { email } });
         }
     };
 
